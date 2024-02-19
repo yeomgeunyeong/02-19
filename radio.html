@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style type="text/css">
+
+        *{margin: 0;padding: 0;}
+
+        input#index1:checked + input + input + div{
+            transform: scale(1);
+            animation: in 1s forwards;
+        }
+        
+        input#index1:not(:checked) + input + input + div{
+            transform: scale(0);
+        }
+
+        input#index1:not(:checked) + input + input + div label{
+            transform: scale(1);
+            animation: out 1s 1s forwards;
+        }
+
+
+
+        input#index2:checked + input + div + div{
+            transform: scale(1);
+            animation: in 1s forwards;
+        }
+
+        input#index2:not(:checked) + input + div + div{
+            transform: scale(0);
+        }
+
+        input#index1:not(:checked) + input + div + div label{
+            transform: scale(1);
+            animation: out 1s 1s forwards;
+        }
+
+
+
+        input#index3:checked + div + div + div{
+            transform: scale(1);
+            animation: in 1s forwards;
+        }
+
+        input#index3:not(:checked) + div + div + div{
+            transform: scale(0);
+        }
+
+        input#index3:not(:checked) + div + div + div label{
+            transform: scale(1);
+            animation: out 1s 1s forwards;
+        }
+        
+
+        .scene{
+            position: absolute;
+        }
+        
+        
+        @keyframes in{
+            0%{transform: scale(0);}
+            100%{transform: scale(1);}
+        }
+
+        @keyframes out{
+            0%{transform: scale(1);}
+            100%{transform: scale(0);}
+        }
+
+
+
+
+
+    </style>
+
+
+</head>
+<body>
+    <input type="radio" id="index1" name="trigger" checked="checked">
+    <input type="radio" id="index2" name="trigger">
+    <input type="radio" id="index3" name="trigger">
+
+    <div class="scene scene1">
+        <label for="index1">
+            <img src="img/fam1.png" alt="fam1">
+        </label>
+    </div>
+
+    <div class="scene scene2">
+        <label for="index2">
+            <img src="img/fam2.png" alt="fam2">
+        </label>
+    </div>
+
+    <div class="scene scene3">
+        <label for="index3">
+            <img src="img/fam3.png" alt="fam3">
+        </label>
+    </div>
+</body>
+</html>

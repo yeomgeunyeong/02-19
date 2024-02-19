@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+    <style type="text/css">
+
+        *{margin: 0;padding: 0;}
+
+        body{
+            background-color: #f1f1f1;
+            color: #444;
+            text-transform: uppercase;
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        }
+
+
+        .upper_container{
+            position: fixed;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .upper_container h1{
+            font-size: 20rem;
+        }
+
+        .transition{
+            position: relative;
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .transition .lower_container{
+            /* opacity: 0; */
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 5rem;
+        }
+
+
+        .nav_toggler{
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            position: fixed;
+            z-index: 10;
+            width: 50px;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            background-color: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .line{
+            position: absolute;
+            display: block;
+            width: 100%;
+            height: 5px;
+            background-color: black;
+            transition: transform 0.3s ease-in-out, opacity 0.1s ease-out;
+        }
+
+        .line.l1{
+            transform: translateY(-13px);
+        }
+        
+        .line.l2{}
+        
+        .line.l3{
+            transform: translateY(13px);
+        }
+
+        .nav_toggler.active .line.l1{
+            transform: translateY(0) rotate(45deg);
+        }
+
+        .nav_toggler.active .line.l2{
+            opacity: 0;
+        }
+        
+        .nav_toggler.active .line.l3{
+            transform: translateY(0) rotate(-45deg);
+        }
+
+
+        nav{
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: thistle;
+            transform: translateY(-100%);
+            transition: all 0.5s ease-in-out;
+        }
+        
+        nav.active{
+            transform: translateY(0);
+        }
+
+        nav a{
+            color: white;
+            font-size: 3rem;
+        }
+
+        .following_container{
+            background-color: pink;
+            height: 100vh;
+        }
+
+
+    </style>
+
+
+
+</head>
+<body>
+    <header id="header">
+        <div class="upper_container">
+            <h1>Hello</h1>
+        </div><!-- upper_container -->
+
+        <div class="transition">
+            <div class="lower_container">
+                <div class="div1">Lorem ipsum dolor</div>
+                <div class="div2">sit amet consectetur adipisicing elit.</div>
+                <div class="div3">Minus, recusandae!</div>
+            </div><!-- lower_container -->
+        </div><!-- transition -->
+    </header><!-- header -->
+
+    <nav>
+        <div class="menu_link_container">
+            <a href="#">home</a>
+        </div><!-- menu_link_container -->
+        <div class="menu_link_container">
+            <a href="#">about</a>
+        </div><!-- menu_link_container -->
+        <div class="menu_link_container">
+            <a href="#">work</a>
+        </div><!-- menu_link_container -->
+        <div class="menu_link_container">
+            <a href="#">contact</a>
+        </div><!-- menu_link_container -->
+    </nav>
+
+    <button class="nav_toggler" type="button">
+        <span class="line l1"></span>
+        <span class="line l2"></span>
+        <span class="line l3"></span>
+    </button>
+
+    <div class="following_container"></div>
+
+
+
+    <script src='https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js'></script>
+    <script src='https://unpkg.co/gsap@3/dist/gsap.min.js'></script>
+    <script src='https://unpkg.com/gsap@3/dist/TextPlugin.min.js'></script>
+
+    <script lang="java">
+
+        gsap.registerPlugin(ScrollTrigger);
+
+        gsap.timeline({
+            scrollTrigger:{
+                trigger:".transition", 
+                pin:true,
+                start:"top top",
+                end:"+=300%",
+                scrub:1
+            },
+            default:{
+                ease:"none"
+            },
+        })
+        .to(
+            document.body,{
+                delay:0.3,
+            }, "start"
+        )
+        .to(
+            ".upper_container h1",{
+                scale:5,
+            },"start"
+        )
+        .to(
+            ".upper_container h1",{
+                opacity:0,
+            },"start"
+        )
+        .to(
+            ".lower_container",{
+                delay:0.1,
+                scale:2,
+            },"start"
+        )
+        .to(
+            ".lower_container",{
+                delay:0,
+                opacity:1,
+            },"start"
+        )
+
+
+        //메뉴
+
+        var menubutton=document.querySelector(".nav_toggler")
+        var navigation=document.querySelector("nav")
+        
+        menubutton.addEventListener("click", togglenav);
+
+        function togglenav(){
+            menubutton.classList.toggle("active")
+            navigation.classList.toggle("active")
+        }
+
+
+    </script>
+</body>
+</html>
