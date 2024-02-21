@@ -60,6 +60,8 @@
             height: 120px;
             top: 50%;
             transform: translateY(-50%);
+            animation: scaleLogo 3s forwards cubic-bezier(0.6, -0.28, 0.735, 0.045), 
+            logoIn 1s 1.2s forwards cubic-bezier(0.68, -0.55, 0.265, 1.55);
         }
 
         .mars_logo div{
@@ -104,6 +106,193 @@
             background-size: auto 100% !important;
         }
 
+        @keyframes scaleLogo{
+            0%{transform: scale(0) translateY(-50%);}
+            20%{transform: scale(1.1) translateY(-50%);}
+            40%{transform: scale(0.98) translateY(-50%);}
+            60%{transform: scale(1.012) translateY(-50%);}
+            80%{transform: scale(0.85) translateY(-50%);}
+            100%{transform: scale(1) translateY(-50%);}   
+        }
+
+        @keyframes logoIn{
+            0%{
+                top: 50%;
+                transform: scale(1) translateY(-50%);
+            }
+            100%{
+                top: calc(0% + 80px);
+                transform: scale(1) translateY(-50%);
+            }
+        }
+
+
+
+        .mars_scene{
+            position: absolute;
+            width: 100%;
+            transition: all 0 1s;
+        }
+        
+        .mars_scene_inner{
+            width: 100%;
+            height: 100vh;
+        }
+
+        .mars_scene.start{}
+
+        .mars_scene.start .into{
+            position: absolute;
+            left: 0;
+            top: 50%;
+            right: 0;
+            margin: auto;
+            transform: translateY(-50%) skewY(-10deg);
+            width: 450px;
+            animation: bob 3s 3s infinite;
+        }
+
+        @keyframes bob{
+            0%{transform: translateY(-50%) skewY(-10deg);}
+            50%{transform: translateY(-52%) skewY(-10deg);}
+            100%{transform: translateY(-50%) skewY(-10deg);}
+        }
+
+        .mars_scene.start .into_small{
+            font-size: 70px;
+            position: relative;
+            top: 20px;
+            left: 140px;
+            color: #8f3025;
+            transform: scale(0);
+            animation: scale 1s 2s forwards;
+        }
+
+        @keyframes scale{
+            0%{transform: scale(0);}
+            20%{transform: scale(1.1);}
+            40%{transform: scale(0.9);}
+            60%{transform: scale(1.1);}
+            80%{transform: scale(0.8);}
+            100%{transform: scale(1);}
+        }
+
+        .mars_scene.start .into_to{
+            color: white;
+            background-color: #8f3025;
+            font-size: 30px;
+            padding: 10px 20px;
+            position: absolute;
+            right: 50px;
+            top: 34px;
+            transform: scale(0);
+            animation: scale 1s 2.2s forwards;
+            border-radius: 255px 15px 255px 15px / 15px 255px 15px 255px;
+        }
+        
+        .mars_scene.start .intro_large{
+            color: white;
+            text-shadow: -7px 8px 0 #8d3025;
+            font-size: 130px;
+        }
+
+        .mars_scene.start .intro_large span{
+            float: left;
+            transform: scale(0);
+        }
+
+        .mars_scene.start .intro_large span:nth-child(1){
+            font-size: 180px;
+            position: relative;
+            top: -40px;
+            animation: scale 1s 2.5s forwards;
+        }
+
+        .mars_scene.start .intro_large span:nth-child(2){
+            animation: scale 1s 2.7 forwards;
+        }
+
+        .mars_scene.start .intro_large span:nth-child(3){
+            animation: scale 1s 2.6 forwards;
+        }
+
+        .mars_scene.start .intro_large span:nth-child(4){
+            animation: scale 1s 2.8 forwards;
+        }
+
+        .mars_scene.start .intro_subheading{
+            color: #61221b;
+            font-size: 16px;
+            position: relative;
+            top: -70px;
+            left: 150px;
+            clear: both;
+            transform: scale(0);
+            animation: scale 1s 2.9s forwards;
+            transform-origin: -10px;
+        }
+
+        .mars_scene.start label{
+            color: #8d3025;
+            background-color: white;
+            padding: 20px 70px 20px 30px;
+            box-shadow: -4px 6px 0 #8d3025;
+            cursor: pointer;
+            font-size: 14px;
+            position: absolute;
+            right: 0;
+            top: 250px;
+            left: 350px;
+            width: 180px;
+            transform: scale(0);
+            animation: scale 1s 2.8 forwards;
+            transition: all 0.3s;
+            border-radius: 255px 15px 255px 15px / 15px 255px 15px 255px;
+        }
+
+        .mars_scene.start label::after{
+            display: block;
+            content: "";
+            width: 9px;
+            height: 10px;
+            background-color: #a53e2e;
+            position: absolute;
+            right: 30px;
+            bottom: 12px;
+            transition: all 0.3s;
+        }
+
+        .mars_scene.start label:hover{
+            box-shadow: -6px 8px 0 #8d3025;
+        }
+
+        .mars_scene.start label:hover .rocket{
+            top: -30px;
+        }
+
+        .mars_scene.start label:hover::after{
+            height: 30px;
+        }
+
+        .mars_scene.start label .rocket{
+            position: absolute;
+            width: 33px;
+            right: 15px;
+            top: -13px;
+            transform: rotate(7deg);
+            transition: all 0.3s;
+            z-index: 5;
+        }
+
+        .mars_scene.start label .cloud{
+            position: absolute;
+            width: 61px;
+            right: 0;
+            top: 33px;
+            transform: rotate(5deg);
+        }
+
+
 
 
     </style>
@@ -132,6 +321,34 @@
 
         <div class="mars_parallax"></div>
         <div class="mars_parallax__two"></div>
+
+        <div class="mars_scene start">
+            <div class="mars_scene_inner">
+                <div class="into">
+                    <div class="into_small">
+                        Move
+                    </div><!-- into_small -->
+                    <div class="into_to">
+                        to
+                    </div><!-- into_to -->
+                    <div class="intro_large">
+                        <span>M</span>
+                        <span>a</span>
+                        <span>r</span>
+                        <span>s</span>
+                    </div><!-- intro_large -->
+
+                    <div class="intro_subheading">
+                        "You new home awaits"
+                    </div><!-- intro_subheading -->
+                    <label for="index2">
+                        Get Started
+                        <img src="img/rocket_copy.png" alt="rocket_copy" class="rocket">
+                        <img src="img/rcloud.png" alt="rcloud" class="cloud">
+                    </label>
+                </div><!-- into -->
+            </div><!-- mars_scene_inner -->
+        </div><!-- mars_scene -->
     </div><!-- mars -->
 </body>
 </html>
